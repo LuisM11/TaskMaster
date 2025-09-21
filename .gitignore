@@ -1,0 +1,27 @@
+# Django
+*.pyc
+__pycache__/
+db.sqlite3
+/static/
+/media/
+
+# VS Code
+.vscode/
+
+# Entorno virtual
+venv/
+env/
+ENV/
+*.egg-info/
+
+# Archivos de migración temporales
+*.log
+
+# Archivos de configuración locales
+*.env
+
+# MacOS
+.DS_Store
+
+# Linux
+*.swp
