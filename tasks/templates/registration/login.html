@@ -1,9 +1,33 @@
 <!doctype html>
 <html lang="es">
-<head><meta charset="utf-8"><title>Ingresar</title></head>
+<head>
+  <meta charset="utf-8">
+  <title>Ingresar</title>
+  <style>
+    /* Estilos para la página de login */
+    .form-container {
+       max-width: 400px;
+       margin: auto;
+       padding: 20px;
+       border: 1px solid #ddd;
+       border-radius: 5px;
+       background-color: #fafafa;
+    }
+    .form-group {
+       margin-bottom: 15px;
+    }
+    input[type="submit"] {
+       background-color: #4CAF50;
+       color: #fff;
+       padding: 10px 20px;
+       border: none;
+       border-radius: 3px;
+    }
+  </style>
+</head>
 <body>
   <h1>Ingresar</h1>
-  <form method="post">
+  <form method="post" class="form-container">
     {% csrf_token %}
     {{ form.as_p }}
     {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
