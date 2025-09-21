@@ -14,7 +14,6 @@ practicar el modelado de objetos del dominio.
 -   Organización mediante **Listas**.
 -   Etiquetado mediante **Categorías**.
 -   Campos de **estado**, **prioridad**, y fechas de vencimiento.
--   Reportes básicos de progreso (% de tareas completadas).
 -   Panel de administración de Django para gestión interna.
 
 ------------------------------------------------------------------------
