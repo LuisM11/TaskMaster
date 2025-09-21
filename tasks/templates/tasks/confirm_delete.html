@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Eliminar tarea · TaskMaster{% endblock %}
+{% block content %}
+  <h1>Eliminar tarea</h1>
+  <p>¿Seguro que deseas eliminar “{{ object.title }}”?</p>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit">Sí, eliminar</button>
+    <a href="{% url 'tasks:list' %}">Cancelar</a>
+  </form>
+{% endblock %}

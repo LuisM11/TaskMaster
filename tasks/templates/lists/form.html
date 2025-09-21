@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Guardar lista · TaskMaster{% endblock %}
+{% block content %}
+<h1>{% if object %}Editar{% else %}Crear{% endif %} lista</h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Guardar</button>
+  <a href="{% url 'tasks:lists' %}">Cancelar</a>
+</form>
+{% endblock %}

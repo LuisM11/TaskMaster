@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}TaskMaster{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/app.css' %}" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <a href="{% url 'tasks:list' %}">Tareas</a> |
+        <a href="{% url 'tasks:lists' %}">Listas</a> |
+        <a href="{% url 'tasks:categories' %}">Categorías</a> |
+        {% if user.is_authenticated %}
+        <span>Hola, {{ user.username }}</span>
+        <form
+          action="{% url 'tasks:logout' %}"
+          method="post"
+          style="display: inline"
+        >
+          {% csrf_token %}
+          <button
+            type="submit"
+            style="
+              background: none;
+              border: none;
+              color: inherit;
+              cursor: pointer;
+            "
+          >
+            Salir
+          </button>
+        </form>
+        {% else %}
+        <a href="{% url 'login' %}">Ingresar</a>
+        <a href="{% url 'tasks:signup' %}">Crear cuenta</a>
+        {% endif %}
+      </nav>
+    </header>
+
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <main>{% block content %}{% endblock %}</main>
+  </body>
+</html>

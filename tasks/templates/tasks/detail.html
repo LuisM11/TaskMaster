@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}{{ task.title }} · TaskMaster{% endblock %}
+{% block content %}
+  <h1>{{ task.title }}</h1>
+  <p>{{ task.description|linebreaks }}</p>
+  <p>Estado: {{ task.get_status_display }} · Prioridad: {{ task.get_priority_display }}</p>
+  {% if task.due_date %}<p>Vence: {{ task.due_date }}</p>{% endif %}
+  {% if task.categories.all %}<p>Categorías:
+    {% for c in task.categories.all %}{{ c.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+  </p>{% endif %}
+
+  <p>
+    <a href="{% url 'tasks:edit' task.pk %}">Editar</a> ·
+    <a href="{% url 'tasks:list' %}">Volver</a>
+  </p>
+{% endblock %}

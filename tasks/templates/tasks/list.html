@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Tareas · TaskMaster{% endblock %}
+{% block content %}
+  <h1>Tareas</h1>
+
+  <p><a href="{% url 'tasks:create' %}">➕ Nueva tarea</a></p>
+
+  {% if tasks %}
+    <ul>
+      {% for t in tasks %}
+        <li>
+          <a href="{% url 'tasks:detail' t.pk %}">{{ t.title }}</a>
+          — {{ t.get_status_display }} · {{ t.get_priority_display }}
+          {% if t.due_date %} · vence: {{ t.due_date }}{% endif %}
+          {% if t.list %} · lista: {{ t.list.name }}{% endif %}
+
+          {% if t.status != "COMPLETED" %}
+            · <a href="{% url 'tasks:complete' t.pk %}?next={% url 'tasks:list' %}">✔ completar</a>
+          {% endif %}
+          · <a href="{% url 'tasks:edit' t.pk %}">✏ editar</a>
+          · <a href="{% url 'tasks:delete' t.pk %}">🗑 eliminar</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No hay tareas todavía.</p>
+  {% endif %}
+{% endblock %}

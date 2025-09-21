@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><title>Ingresar</title></head>
+<body>
+  <h1>Ingresar</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+    <button type="submit">Entrar</button>
+  </form>
+  <p><a href="/">Volver al inicio</a></p>
+  <p>¿No tienes cuenta? <a href="{% url 'tasks:signup' %}">Crear cuenta</a></p>
+
+</body>
+</html>

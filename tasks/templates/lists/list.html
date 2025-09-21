@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Listas · TaskMaster{% endblock %}
+{% block content %}
+<h1>Listas</h1>
+<p><a href="{% url 'tasks:lists_create' %}">➕ Nueva lista</a></p>
+
+{% if lists %}
+  <ul>
+  {% for l in lists %}
+    <li>
+      <a href="{% url 'tasks:lists_detail' l.pk %}">{{ l.name }}</a>
+      · <a href="{% url 'tasks:lists_edit' l.pk %}">editar</a>
+      · <a href="{% url 'tasks:lists_delete' l.pk %}">eliminar</a>
+      {% if l.is_default %} · (predeterminada){% endif %}
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No tienes listas aún.</p>
+{% endif %}
+{% endblock %}

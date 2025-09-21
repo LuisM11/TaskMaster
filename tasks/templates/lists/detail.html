@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}{{ list_obj.name }} · TaskMaster{% endblock %}
+{% block content %}
+<h1>{{ list_obj.name }}</h1>
+<p>{{ list_obj.description }}</p>
+<p>
+  <a href="{% url 'tasks:lists_edit' list_obj.pk %}">Editar</a> ·
+  <a href="{% url 'tasks:lists' %}">Volver</a>
+</p>
+
+<h2>Tareas en esta lista</h2>
+{% if tasks %}
+  <ul>
+    {% for t in tasks %}
+      <li>
+        <a href="{% url 'tasks:detail' t.pk %}">{{ t.title }}</a>
+        — {{ t.get_status_display }} · {{ t.get_priority_display }}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>No hay tareas en esta lista.</p>
+{% endif %}
+{% endblock %}

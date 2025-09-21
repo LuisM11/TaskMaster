@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Categorías · TaskMaster{% endblock %}
+{% block content %}
+<h1>Categorías</h1>
+<p><a href="{% url 'tasks:categories_create' %}">➕ Nueva categoría</a></p>
+
+{% if categories %}
+  <ul>
+  {% for c in categories %}
+    <li>
+      {{ c.name }}
+      {% if c.slug %} ({{ c.slug }}){% endif %}
+      · <a href="{% url 'tasks:categories_edit' c.pk %}">editar</a>
+      · <a href="{% url 'tasks:categories_delete' c.pk %}">eliminar</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No tienes categorías todavía.</p>
+{% endif %}
+{% endblock %}
